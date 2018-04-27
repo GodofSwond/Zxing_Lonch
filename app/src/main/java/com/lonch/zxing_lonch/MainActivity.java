@@ -22,6 +22,8 @@ import butterknife.OnClick;
 
 /**
  * 集成Zxing的扫码
+ *
+ * @author GodofSwond
  */
 public class MainActivity extends AppCompatActivity {
 

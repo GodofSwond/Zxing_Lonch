@@ -9,7 +9,6 @@ import android.graphics.BitmapFactory;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.media.MediaPlayer.OnCompletionListener;
-import android.nfc.FormatException;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -50,7 +49,7 @@ import java.util.Vector;
 /**
  * Initial the camera
  *
- * @author Ryan.Tang
+ * @author GodofSwond
  */
 public class CaptureActivity extends AppCompatActivity implements Callback {
 
@@ -72,7 +71,7 @@ public class CaptureActivity extends AppCompatActivity implements Callback {
     private Bitmap scanBitmap;
     //	private Button cancelScanButton;
     public static final int RESULT_CODE_QR_SCAN = 0xA1;
-    public static final String INTENT_EXTRA_KEY_QR_SCAN = "scan_result";
+    public static final String INTENT_EXTRA_KEY_QR_SCAN = "qscan_result";
 
     /**
      * Called when the activity is first created.
