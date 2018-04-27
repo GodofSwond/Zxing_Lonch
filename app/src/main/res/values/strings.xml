@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">致医健康</string>
+    <string name="encode_code">生成码</string>
+    <string name="dencode_code">扫描码</string>
+    <string name="code_text">输入生成二维码的文本信息</string>
+    <string name="codetext">这里显示扫描结果</string>
+</resources>

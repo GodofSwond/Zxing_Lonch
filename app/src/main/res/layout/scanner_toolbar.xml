@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<android.support.v7.widget.Toolbar xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/toolbar"
+    android:layout_width="match_parent"
+    android:layout_height="?attr/actionBarSize"
+    android:background="@color/result_view">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/scanner_toolbar_back"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:src="@mipmap/abc_ic_ab_back_mtrl_am_alpha" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="二维码/条形码"
+            android:textColor="#FFF"
+            android:textSize="12sp" />
+
+        <TextView
+            android:id="@+id/scanner_toolbar_title"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_toRightOf="@+id/scanner_toolbar_back"
+            android:gravity="center_vertical"
+            android:text="致医健康"
+            android:textColor="#FFF"
+            android:textSize="12sp" />
+    </RelativeLayout>
+
+
+</android.support.v7.widget.Toolbar>
