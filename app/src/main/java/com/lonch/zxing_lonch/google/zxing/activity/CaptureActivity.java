@@ -23,6 +23,7 @@ import android.view.SurfaceHolder;
 import android.view.SurfaceHolder.Callback;
 import android.view.SurfaceView;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
 
@@ -49,7 +50,7 @@ import java.util.Vector;
 /**
  * Initial the camera
  *
- * @author GodofSwond
+ * @author Ld
  */
 public class CaptureActivity extends AppCompatActivity implements Callback {
 
@@ -69,9 +70,8 @@ public class CaptureActivity extends AppCompatActivity implements Callback {
     private ProgressDialog mProgress;
     private String photo_path;
     private Bitmap scanBitmap;
-    //	private Button cancelScanButton;
     public static final int RESULT_CODE_QR_SCAN = 0xA1;
-    public static final String INTENT_EXTRA_KEY_QR_SCAN = "qscan_result";
+    public static final String INTENT_EXTRA_KEY_QR_SCAN = "scan_result";
 
     /**
      * Called when the activity is first created.
@@ -80,7 +80,6 @@ public class CaptureActivity extends AppCompatActivity implements Callback {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_scanner);
-        //ViewUtil.addTopView(getApplicationContext(), this, R.string.scan_card);
         CameraManager.init(getApplication());
         viewfinderView = (ViewfinderView) findViewById(R.id.viewfinder_content);
         back = (ImageView) findViewById(R.id.scanner_toolbar_back);
@@ -90,7 +89,6 @@ public class CaptureActivity extends AppCompatActivity implements Callback {
                 finish();
             }
         });
-//		cancelScanButton = (Button) this.findViewById(R.id.btn_cancel_scan);
         hasSurface = false;
         inactivityTimer = new InactivityTimer(this);
 
@@ -100,34 +98,24 @@ public class CaptureActivity extends AppCompatActivity implements Callback {
 
     private void addToolbar() {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-//        ImageView more = (ImageView) findViewById(R.id.scanner_toolbar_more);
-//        assert more != null;
-//        more.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//
-//            }
-//        });
+        ImageView more = (ImageView) findViewById(R.id.scanner_toolbar_more);
+        assert more != null;
+        more.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(CaptureActivity.this, "nihao", Toast.LENGTH_SHORT).show();
+            }
+        });
         setSupportActionBar(toolbar);
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        //getMenuInflater().inflate(R.menu.scanner_menu, menu);
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-//        switch (item.getItemId()){
-//            case R.id.scan_local:
-//                //打开手机中的相册
-//                Intent innerIntent = new Intent(Intent.ACTION_GET_CONTENT); //"android.intent.action.GET_CONTENT"
-//                innerIntent.setType("image/*");
-//                Intent wrapperIntent = Intent.createChooser(innerIntent, "选择二维码图片");
-//                this.startActivityForResult(wrapperIntent, REQUEST_CODE_SCAN_GALLERY);
-//                return true;
-//        }
         return super.onOptionsItemSelected(item);
     }
 
@@ -153,15 +141,9 @@ public class CaptureActivity extends AppCompatActivity implements Callback {
                         public void run() {
                             Result result = scanningImage(photo_path);
                             if (result != null) {
-//                                Message m = handler.obtainMessage();
-//                                m.what = R.id.decode_succeeded;
-//                                m.obj = result.getText();
-//                                handler.sendMessage(m);
                                 Intent resultIntent = new Intent();
                                 Bundle bundle = new Bundle();
                                 bundle.putString(INTENT_EXTRA_KEY_QR_SCAN, result.getText());
-//                                Logger.d("saomiao",result.getText());
-//                                bundle.putParcelable("bitmap",result.get);
                                 resultIntent.putExtras(bundle);
                                 CaptureActivity.this.setResult(RESULT_CODE_QR_SCAN, resultIntent);
 
@@ -237,15 +219,6 @@ public class CaptureActivity extends AppCompatActivity implements Callback {
         }
         initBeepSound();
         vibrate = true;
-
-        //quit the scan view
-//		cancelScanButton.setOnClickListener(new OnClickListener() {
-//
-//			@Override
-//			public void onClick(View v) {
-//				CaptureActivity.this.finish();
-//			}
-//		});
     }
 
     @Override
@@ -274,15 +247,15 @@ public class CaptureActivity extends AppCompatActivity implements Callback {
         inactivityTimer.onActivity();
         playBeepSoundAndVibrate();
         String resultString = result.getText();
-        //FIXME
+        //
         if (TextUtils.isEmpty(resultString)) {
             Toast.makeText(CaptureActivity.this, "Scan failed!", Toast.LENGTH_SHORT).show();
         } else {
             Intent resultIntent = new Intent();
             Bundle bundle = new Bundle();
             bundle.putString(INTENT_EXTRA_KEY_QR_SCAN, resultString);
-            System.out.println("sssssssssssssssss scan 0 = " + resultString);
-            // 不能使用Intent传递大于40kb的bitmap，可以使用一个单例对象存储这个bitmap
+            System.out.println("scan * 0 = " + resultString);
+//             不能使用Intent传递大于40kb的bitmap，可以使用一个单例对象存储这个bitmap
 //            bundle.putParcelable("bitmap", barcode);
 //            Logger.d("saomiao",resultString);
             resultIntent.putExtras(bundle);

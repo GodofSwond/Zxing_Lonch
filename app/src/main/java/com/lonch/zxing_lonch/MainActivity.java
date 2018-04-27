@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -21,22 +22,20 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 /**
- * 集成Zxing的扫码
- *
- * @author GodofSwond
+ * 集成Zxing二维码
  */
 public class MainActivity extends AppCompatActivity {
 
-    @BindView(R.id.openCodeBtn)
-    Button openCodeBtn;
-    @BindView(R.id.textEt)
-    EditText textEt;
-    @BindView(R.id.createCodeBtn)
-    Button createCodeBtn;
-    @BindView(R.id.codeIv)
-    ImageView codeIv;
-    @BindView(R.id.codeTv)
-    TextView codeTv;
+    @BindView(R.id.openQRCodeScanBtn)
+    Button openQRCodeScanBtn;
+    @BindView(R.id.inputText)
+    EditText inputText;
+    @BindView(R.id.CreateQRCodeBtn)
+    Button CreateQRCodeBtn;
+    @BindView(R.id.QRcode)
+    ImageView QRcode;
+    @BindView(R.id.codeText)
+    TextView codeText;
 
     //打开扫描界面请求码
     private int REQUEST_CODE = 0x01;
@@ -50,10 +49,10 @@ public class MainActivity extends AppCompatActivity {
         ButterKnife.bind(this);//一定要写
     }
 
-    @OnClick({R.id.openCodeBtn, R.id.createCodeBtn})
+    @OnClick({R.id.openQRCodeScanBtn, R.id.CreateQRCodeBtn})
     public void onClick(View view) {
         switch (view.getId()) {
-            case R.id.openCodeBtn:
+            case R.id.openQRCodeScanBtn:
                 //打开二维码扫描界面
                 if (CommonUtil.isCameraCanUse()) {
                     Intent intent = new Intent(this, CaptureActivity.class);
@@ -62,16 +61,16 @@ public class MainActivity extends AppCompatActivity {
                     Toast.makeText(this, "请打开此应用的摄像头权限！", Toast.LENGTH_SHORT).show();
                 }
                 break;
-            case R.id.createCodeBtn:
+            case R.id.CreateQRCodeBtn:
                 //获取输入的文本信息
-                String strTxt = textEt.getText().toString();
+                String strTxt = inputText.getText().toString();
                 if (null != strTxt && !"".equals(strTxt.trim())) {
                     //根据输入的文本生成对应的二维码并且显示出来
                     try {
-                        Bitmap bitmap = EncodingHandler.createQRCode(textEt.getText().toString(), 500);
+                        Bitmap bitmap = EncodingHandler.createQRCode(inputText.getText().toString(), 500);
                         if (null != bitmap) {
                             Toast.makeText(this, "二维码生成成功！", Toast.LENGTH_SHORT).show();
-                            codeIv.setImageBitmap(bitmap);
+                            QRcode.setImageBitmap(bitmap);
                         }
                     } catch (WriterException e) {
                         e.printStackTrace();
@@ -91,7 +90,7 @@ public class MainActivity extends AppCompatActivity {
             Bundle bundle = data.getExtras();
             String scanResult = bundle.getString("scan_result");
             //将扫描出的信息显示出来
-            codeTv.setText(scanResult);
+            codeText.setText(scanResult);
         }
     }
 }

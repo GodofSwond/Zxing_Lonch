@@ -10,48 +10,52 @@
     android:paddingTop="@dimen/activity_vertical_margin">
 
     <Button
-        android:id="@+id/openCodeBtn"
+        android:id="@+id/openQRCodeScanBtn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/dencode_code" />
-
+        android:layout_below="@+id/codeText"
+        android:background="@color/color_text_red"
+        android:text="@string/dencode_code"
+        android:textColor="@color/viewfinder_frame" />
+c
     <TextView
-        android:id="@+id/codeTv"
+        android:id="@+id/codeText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/openCodeBtn"
         android:paddingBottom="20dp"
         android:paddingTop="20dp"
         android:text="@string/codetext" />
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_below="@+id/codeTv"
-        android:background="@color/colorPrimary" />
-
     <EditText
-        android:id="@+id/textEt"
+        android:id="@+id/inputText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/codeTv"
+        android:layout_below="@id/openQRCodeScanBtn"
+        android:background="@null"
         android:hint="@string/code_text"
         android:paddingBottom="20dp"
         android:paddingTop="20dp" />
 
     <Button
-        android:id="@+id/createCodeBtn"
+        android:id="@+id/CreateQRCodeBtn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/textEt"
-        android:text="@string/encode_code" />
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/inputText"
+        android:background="@color/color_text_red"
+        android:text="@string/encode_code"
+        android:textColor="@color/viewfinder_frame" />
 
     <ImageView
-        android:id="@+id/codeIv"
+        android:id="@+id/QRcode"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/createCodeBtn"
+        android:layout_below="@id/CreateQRCodeBtn"
         android:layout_centerHorizontal="true"
+        android:layout_marginBottom="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="10dp"
         android:paddingTop="10dp"
-        android:src="@mipmap/ic_launcher" />
+        android:src="@drawable/erweima" />
 </RelativeLayout>

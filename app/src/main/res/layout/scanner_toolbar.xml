@@ -22,7 +22,7 @@
             android:layout_centerInParent="true"
             android:text="二维码/条形码"
             android:textColor="#FFF"
-            android:textSize="12sp" />
+            android:textSize="15sp" />
 
         <TextView
             android:id="@+id/scanner_toolbar_title"
@@ -32,7 +32,15 @@
             android:gravity="center_vertical"
             android:text="致医健康"
             android:textColor="#FFF"
-            android:textSize="12sp" />
+            android:textSize="15sp" />
+
+        <ImageView
+            android:id="@+id/scanner_toolbar_more"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
+            android:paddingRight="20dp"
+            android:src="@mipmap/abc_ic_menu_moreoverflow_mtrl_alpha" />
     </RelativeLayout>
 
 
